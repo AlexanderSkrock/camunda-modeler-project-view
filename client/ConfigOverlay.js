@@ -14,6 +14,9 @@ export default ({ configuration, onClose }) => {
     <Overlay onClose={ onOverlayClose }>
       <Section>
         <Section.Header>Auto save configuration</Section.Header>
+        {
+          // TODO add ui for changing the configuration
+        }
       </Section>
     </Overlay>
   );
