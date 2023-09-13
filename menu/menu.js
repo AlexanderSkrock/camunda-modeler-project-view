@@ -1,11 +1,11 @@
 module.exports = function (electronApp, menuState) {
   return [
     {
-      label: 'Greet!',
-      accelerator: 'CommandOrControl+G',
+      label: 'Manage projects',
+      accelerator: 'CommandOrControl+Shift+P',
       enabled: true,
       action: function() {
-        process.exit(9)
+        electronApp.emit('menu:action', 'open-project-view-configuration')
       }
     }
   ];
