@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./client/ProjectViewExtension.js":
@@ -8,11 +7,204 @@
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ ProjectViewExtension)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => null);
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/components */ "./node_modules/camunda-modeler-plugin-helpers/components.js");
+/* eslint-disable no-unused-vars*/
+
+
+class ProjectViewExtension extends camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.PureComponent {
+  render() {
+    return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__.Fill, {
+      slot: "status-bar__app",
+      group: "1_project_view"
+    }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Hello!")));
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/camunda-modeler-plugin-helpers/components.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/camunda-modeler-plugin-helpers/components.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Fill: () => (/* binding */ Fill),
+/* harmony export */   Modal: () => (/* binding */ Modal),
+/* harmony export */   NotCompatible: () => (/* binding */ NotCompatible),
+/* harmony export */   Overlay: () => (/* binding */ Overlay),
+/* harmony export */   Section: () => (/* binding */ Section),
+/* harmony export */   ToggleSwitch: () => (/* binding */ ToggleSwitch)
+/* harmony export */ });
+if (!window.components) {
+  throw notCompatible('3.4');
+}
+
+function notCompatible(requiredVersion) {
+  return new Error('Not compatible with Camunda Modeler < v' + requiredVersion);
+}
+
+const NotCompatible = function(requiredVersion) {
+  return function NotCompatibleComponent() {
+    throw notCompatible(requiredVersion);
+  };
+};
+
+/**
+ * Fill component. Set `slot` to "toolbar" to include in the top toolbar.
+ * Use `group` and `priority=0` to place for correct ordering. The higher
+ * the priority, the earlier the Fill is displayed within the group.
+ *
+ * @type {import('react').ComponentType<{ slot: string, group?: string, priority?: Number }>}
+ *
+ * @example
+ *
+ * import { Fill } from 'camunda-modeler-plugin-helpers/components';
+ *
+ * function CustomFill(props) {
+ *   return (
+ *     <Fill group="4_export" slot="toolbar" priority={100}>
+ *       <button type="button" onClick={ props.openExportTool }>
+ *         Open Export Tool
+ *       </button>
+ *     </Fill>
+ *   );
+ * }
+ */
+const Fill = window.components.Fill;
+
+/**
+ * Modal component.
+ *
+ * @type {import('react').ComponentType<{ onClose: Function }>}
+ *
+ * @example
+ *
+ * import { Modal } from 'camunda-modeler-plugin-helpers/components';
+ *
+ * function CustomModal(props) {
+ *   return (
+ *    <Modal onClose={ props.onClose }>
+ *      <Modal.Title>
+ *        Custom Modal
+ *      </Modal.Title>
+ *      <Modal.Body>
+ *        Hello world!
+ *      </Modal.Body>
+ *      <Modal.Footer>
+ *        <button type="button" onClick={ props.onClose }>
+ *          Close
+ *        </button>
+ *      </Modal.Footer>
+ *    </Modal>
+ *   );
+ * }
+ */
+const Modal = window.components.Modal;
+
+/**
+ * Overlay component.
+ *
+ * @type {import('react').ComponentType<{ 
+ *  onClose: Function, 
+ *  anchor: Node, 
+ *  offset?: { top?: number, bottom?: number, left?: number, right?: number }, 
+ *  maxWidth?: number | string,
+ *  maxHeight?: number | string,
+ *  minWidth?: number | string,
+ *  minHeight?: number | string
+ * }>}
+ *
+ * @example
+ * 
+ * import { Overlay } from 'camunda-modeler-plugin-helpers/components';
+ *
+ * function CustomOverlay(props) {
+ *   return (
+ *    <Overlay onClose={ props.onClose } anchor={ props.btn_ref } offset={ props.anchor }>
+ *      <Overlay.Title>
+ *        Custom Modal
+ *      </Overlay.Title>
+ *      <Overlay.Body>
+ *        Hello world!
+ *      </Overlay.Body>
+ *      <Overlay.Footer>
+ *        <button type="button" onClick={ props.onClose }>
+ *          Close
+ *        </button>
+ *      </Overlay.Footer>
+ *    </Overlay>
+ *   );
+ * }
+ */
+ const Overlay = window.components.Overlay || NotCompatible('5.0');
+
+ /**
+ * Section component.
+ *
+ * @type {import('react').ComponentType<{ maxHeight: Number | String, relativePos: Boolean } }>}
+ *
+ * @example
+ * 
+ * import { Section } from 'camunda-modeler-plugin-helpers/components';
+ *
+ * function CustomSection(props) {
+ *   return (
+ *    <Section maxHeight="240px">
+ *     <Section.Header>
+ *       Custom section
+ *     </Section.Header>
+ *     <Section.Body>
+ *       Hello world!
+ *     </Section.Body>
+ *     <Section.Actions>
+ *      <button type="button" onClick={ props.onClose }>
+ *        Close
+ *      </button>
+ *     </Section.Actions>
+ *    </Section>
+ *   );
+ * }
+ */
+const Section = window.components.Section || NotCompatible('5.0');
+
+ /**
+ * ToggleSwitch component.
+ *
+ * @type {import('react').ComponentType<{ id: string, name: string, label?: string, switcherLabel?: string, description?: string }>}
+ *
+ * @example
+ * 
+ * import { ToggleSwitch } from 'camunda-modeler-plugin-helpers/components';
+ *
+ * function CustomToggle(props) {
+ *   return (
+ *    <Formik initialValues={ initialValues } onSubmit={ this.onSubmit }>
+ *      {() => (
+ *        <Form>
+ *          <Field
+ *            component={ ToggleSwitch }
+ *            switcherLabel="Switcher label"
+ *            id={ id }
+ *            name={ name }
+ *            description="Toggle description"
+ *          />
+ *        </Form>
+ *       )}
+ *    </Formik>
+ *   );
+ * }
+ */
+const ToggleSwitch = window.components.ToggleSwitch || NotCompatible('5.0');
 
 /***/ }),
 
@@ -22,6 +214,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getModelerDirectory: () => (/* binding */ getModelerDirectory),
@@ -396,6 +589,25 @@ function getPluginsDirectory() {
   return window.getPluginsDirectory();
 }
 
+/***/ }),
+
+/***/ "./node_modules/camunda-modeler-plugin-helpers/react.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/camunda-modeler-plugin-helpers/react.js ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+if (!window.react) {
+  throw new Error('Not compatible with Camunda Modeler < 3.4');
+}
+
+/**
+ * React object used by Camunda Modeler. Use it to create UI extension.
+ *
+ * @type {import('react')}
+ */
+module.exports = window.react;
+
 /***/ })
 
 /******/ 	});
@@ -425,6 +637,18 @@ function getPluginsDirectory() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -455,8 +679,9 @@ function getPluginsDirectory() {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!*************************!*\
   !*** ./client/index.js ***!
   \*************************/
