@@ -1,6 +1,38 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/ConfigOverlay.js":
+/*!*********************************!*\
+  !*** ./client/ConfigOverlay.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/components */ "./node_modules/camunda-modeler-plugin-helpers/components.js");
+/* eslint-disable no-unused-vars */
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  configuration,
+  onClose
+}) => {
+  const [config, setConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration);
+  const onOverlayClose = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {
+    onClose(config);
+  }, [config, onClose]);
+  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__.Overlay, {
+    onClose: onOverlayClose
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__.Section, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__.Section.Header, null, "Auto save configuration")));
+});
+
+/***/ }),
+
 /***/ "./client/ProjectViewExtension.js":
 /*!****************************************!*\
   !*** ./client/ProjectViewExtension.js ***!
@@ -10,22 +42,57 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ProjectViewExtension)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
 /* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/components */ "./node_modules/camunda-modeler-plugin-helpers/components.js");
+/* harmony import */ var _ConfigOverlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConfigOverlay */ "./client/ConfigOverlay.js");
 /* eslint-disable no-unused-vars*/
 
 
-class ProjectViewExtension extends camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.PureComponent {
-  render() {
-    return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_components__WEBPACK_IMPORTED_MODULE_1__.Fill, {
-      slot: "status-bar__app",
-      group: "1_project_view"
-    }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Hello!")));
-  }
-}
+const EXTENSION_NAME = 'project-view';
+const OPEN_EXTENSION_CONFIGURATION_ACTION = 'open-project-view-configuration';
+const DEFAULT_CONFIGURATION = {
+  libraryPaths: []
+};
+
+/**
+ * The component props include everything the Application offers plugins,
+ * which includes:
+ * - config: save and retrieve information to the local configuration
+ * - subscribe: hook into application events, like <tab.saved>, <app.activeTabChanged> ...
+ * - triggerAction: execute editor actions, like <save>, <open-diagram> ...
+ * - log: log information into the Log panel
+ * - displayNotification: show notifications inside the application
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  config,
+  subscribe
+}) => {
+  const [extensionConfiguration, setExtensionConfiguration] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(DEFAULT_CONFIGURATION);
+  const [isConfigShown, setConfigShown] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    config.getForPlugin(EXTENSION_NAME).then(setExtensionConfiguration);
+    return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
+  }, []);
+  (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // TODO register custom action as editor action
+    const subscription = subscribe(OPEN_EXTENSION_CONFIGURATION_ACTION, () => {
+      setConfigShown(true);
+    });
+    return subscription.cancel;
+  }, []);
+  const handleConfigClosed = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(updateConfiguration => {
+    setExtensionConfiguration(updateConfiguration);
+    setConfigShown(false);
+    // TODO maybe add success notification
+    // TODO reload project view panel
+  }, [setConfigShown, setExtensionConfiguration]);
+  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isConfigShown ? /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ConfigOverlay__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    configuration: extensionConfiguration,
+    onClose: handleConfigClosed
+  }) : null);
+});
 
 /***/ }),
 
