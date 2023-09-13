@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars*/
-import React, { Fragment, useCallback, useEffect, useState } from 'camunda-modeler-plugin-helpers/react';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'camunda-modeler-plugin-helpers/react';
+import { Fill } from 'camunda-modeler-plugin-helpers/components';
+
 import ConfigOverlay from "./ConfigOverlay";
+import { withCustomEditorActions } from "./CustomEditorActionsMiddleware";
 
 const EXTENSION_NAME = 'project-view';
 
@@ -24,17 +27,19 @@ export default ({ config, subscribe }) => {
   const [isConfigShown, setConfigShown] = useState(false);
 
   useEffect(() => {
-    config.getForPlugin(EXTENSION_NAME).then(setExtensionConfiguration);
-    return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
+    const bpmnSubscription = subscribe('bpmn.modeler.configure', (event) => {
+      event.middlewares.push(withCustomEditorActions({ [OPEN_EXTENSION_CONFIGURATION_ACTION]: () => setConfigShown(true) }));
+    });
+    const dmnSubscription = subscribe('dmn.modeler.configure', (event) => {
+      event.middlewares.push(withCustomEditorActions({ [OPEN_EXTENSION_CONFIGURATION_ACTION]: () => setConfigShown(true) }));
+    });
+    return () => bpmnSubscription.cancel() && dmnSubscription.cancel();
   }, []);
 
   useEffect(() => {
-    // TODO register custom action as editor action
-    const subscription = subscribe(OPEN_EXTENSION_CONFIGURATION_ACTION, () => {
-      setConfigShown(true);
-    })
-    return subscription.cancel;
-  }, [])
+    config.getForPlugin(EXTENSION_NAME).then(setExtensionConfiguration);
+    return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
+  }, []);
 
   const handleConfigClosed = useCallback((updateConfiguration) => {
     setExtensionConfiguration(updateConfiguration)
