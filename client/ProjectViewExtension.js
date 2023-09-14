@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars*/
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'camunda-modeler-plugin-helpers/react';
-import { Fill } from 'camunda-modeler-plugin-helpers/components';
+import React, { useCallback, useEffect, useState } from 'camunda-modeler-plugin-helpers/react';
 
-import ConfigOverlay from "./ConfigOverlay";
+import { Grommet, Layer } from 'grommet';
+
+import ConfigForm from './ConfigForm';
 import { withCustomEditorActions } from "./CustomEditorActionsMiddleware";
 
 const EXTENSION_NAME = 'project-view';
@@ -41,7 +42,7 @@ export default ({ config, subscribe }) => {
     return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
   }, []);
 
-  const handleConfigClosed = useCallback((updateConfiguration) => {
+  const handleConfigFormSubmit = useCallback((updateConfiguration) => {
     setExtensionConfiguration(updateConfiguration)
     setConfigShown(false);
     // TODO maybe add success notification
@@ -49,10 +50,14 @@ export default ({ config, subscribe }) => {
   }, [setConfigShown, setExtensionConfiguration]);
 
   return (
-    <Fragment>
+    <Grommet>
       {
-        isConfigShown ? <ConfigOverlay configuration={ extensionConfiguration } onClose={ handleConfigClosed } /> : null
+        isConfigShown ? (
+          <Layer onEsc={ () => setConfigShown(false) } onClickOutside={ () => setConfigShown(false) }>
+            <ConfigForm onSubmit={ handleConfigFormSubmit }/>
+          </Layer>
+        ) : null
       }
-    </Fragment>
+    </Grommet>
   );
 }
