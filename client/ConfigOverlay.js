@@ -26,7 +26,7 @@ const CenteredOverlay = styled(Overlay)`
 export default ({ configuration, onClose }) => {
   const dummyAnchor = useDummyRef();
 
-  const [initialConfig] = useState(configuration);
+  const [initialConfig] = useState(configuration || {});
   const [libraryPaths, setLibraryPaths] = useState(initialConfig.libraryPaths || [])
 
   const addLibraryPaths = useCallback((files) => {

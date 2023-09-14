@@ -166,7 +166,7 @@ const CenteredOverlay = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__["defau
   onClose
 }) => {
   const dummyAnchor = (0,_useDummyRef__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  const [initialConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration);
+  const [initialConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration || {});
   const [libraryPaths, setLibraryPaths] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialConfig.libraryPaths || []);
   const addLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(files => {
     const uniqueLibraryPaths = new Set(libraryPaths);
