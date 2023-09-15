@@ -7,6 +7,7 @@ import ConfigForm from './ConfigForm';
 import { withCustomEditorActions } from "./CustomEditorActionsMiddleware";
 
 const EXTENSION_NAME = 'project-view';
+const CONFIG_SEGMENT = 'config';
 
 const OPEN_EXTENSION_CONFIGURATION_ACTION = 'open-project-view-configuration';
 
@@ -23,7 +24,7 @@ const DEFAULT_CONFIGURATION = {
  * - log: log information into the Log panel
  * - displayNotification: show notifications inside the application
  */
-export default ({ config, subscribe }) => {
+export default ({ config, subscribe, displayNotification }) => {
   const [extensionConfiguration, setExtensionConfiguration] = useState(DEFAULT_CONFIGURATION);
   const [isConfigShown, setConfigShown] = useState(false);
 
@@ -38,15 +39,22 @@ export default ({ config, subscribe }) => {
   }, []);
 
   useEffect(() => {
-    config.getForPlugin(EXTENSION_NAME).then(setExtensionConfiguration);
-    return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
-  }, []);
+    config.getForPlugin(EXTENSION_NAME, CONFIG_SEGMENT, DEFAULT_CONFIGURATION).then(setExtensionConfiguration);
+  }, [config, setExtensionConfiguration])
 
-  const handleConfigFormSubmit = useCallback((updateConfiguration) => {
-    setExtensionConfiguration(updateConfiguration)
+  const handleConfigFormSubmit = useCallback((updatedConfiguration) => {
     setConfigShown(false);
-    // TODO maybe add success notification
-    // TODO reload project view panel
+
+    if (updatedConfiguration) {
+      setExtensionConfiguration(updatedConfiguration);
+      config.setForPlugin(EXTENSION_NAME, CONFIG_SEGMENT, updatedConfiguration)
+        .then(() => {
+          displayNotification({
+            title: "Saved",
+            content: "Configuration was successfully saved."
+          })
+        }).catch(console.error);
+    }
   }, [setConfigShown, setExtensionConfiguration]);
 
   return (
@@ -54,7 +62,7 @@ export default ({ config, subscribe }) => {
       {
         isConfigShown ? (
           <Layer onEsc={ () => setConfigShown(false) } onClickOutside={ () => setConfigShown(false) }>
-            <ConfigForm onSubmit={ handleConfigFormSubmit }/>
+            <ConfigForm configuration={ extensionConfiguration } onSubmit={ handleConfigFormSubmit }/>
           </Layer>
         ) : null
       }

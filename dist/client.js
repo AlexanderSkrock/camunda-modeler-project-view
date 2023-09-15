@@ -769,8 +769,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardBody/CardBody.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
 /* harmony import */ var _LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LibraryPathsField */ "./client/LibraryPathsField.js");
 /* eslint-disable no-unused-vars */
 
@@ -800,13 +799,14 @@ __webpack_require__.r(__webpack_exports__);
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__["default"], {
     libraryPaths: config.libraryPaths,
     onLibraryPathsChanged: handleLibraryPathsChanged
-  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.CardFooter, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Box, {
-    direction: "row"
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.Button, {
+  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.CardFooter, {
+    pad: "small",
+    justify: "center"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
     type: "submit",
     primary: true,
     label: "Submit"
-  })))));
+  }))));
 });
 
 /***/ }),
@@ -857,6 +857,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Skeleton/Skeleton.js");
 /* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Add.js");
 /* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Subtract.js");
 /* harmony import */ var _useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDirectoryPicker */ "./client/useDirectoryPicker.js");
@@ -884,7 +885,10 @@ __webpack_require__.r(__webpack_exports__);
     onLibraryPathsChanged([...newLibraryPaths]);
   }, [selectedPath, safeLibraryPaths, onLibraryPathsChanged]);
   const [openDirectoryPicker] = (0,_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"])(addLibraryPaths);
-  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement((camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Box, {
+  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Box, {
+    pad: "small",
+    elevation: "medium"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Box, {
     direction: "row",
     justify: "end"
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Button, {
@@ -892,10 +896,10 @@ __webpack_require__.r(__webpack_exports__);
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_4__.Add, null)), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Button, {
     disabled: !selectedPath,
     onClick: removeSelectedLibraryPath
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_5__.Subtract, null))), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_5__.Subtract, null))), safeLibraryPaths.length > 0 ? /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
     data: safeLibraryPaths,
     onClickItem: e => selectPath(e.item)
-  }));
+  }) : /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Skeleton, null, "No library paths selected"));
 });
 
 /***/ }),
@@ -923,6 +927,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const EXTENSION_NAME = 'project-view';
+const CONFIG_SEGMENT = 'config';
 const OPEN_EXTENSION_CONFIGURATION_ACTION = 'open-project-view-configuration';
 const DEFAULT_CONFIGURATION = {
   libraryPaths: []
@@ -939,7 +944,8 @@ const DEFAULT_CONFIGURATION = {
  */
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
   config,
-  subscribe
+  subscribe,
+  displayNotification
 }) => {
   const [extensionConfiguration, setExtensionConfiguration] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(DEFAULT_CONFIGURATION);
   const [isConfigShown, setConfigShown] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -957,19 +963,25 @@ const DEFAULT_CONFIGURATION = {
     return () => bpmnSubscription.cancel() && dmnSubscription.cancel();
   }, []);
   (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    config.getForPlugin(EXTENSION_NAME).then(setExtensionConfiguration);
-    return config.setForPlugin(EXTENSION_NAME, extensionConfiguration);
-  }, []);
-  const handleConfigFormSubmit = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(updateConfiguration => {
-    setExtensionConfiguration(updateConfiguration);
+    config.getForPlugin(EXTENSION_NAME, CONFIG_SEGMENT, DEFAULT_CONFIGURATION).then(setExtensionConfiguration);
+  }, [config, setExtensionConfiguration]);
+  const handleConfigFormSubmit = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(updatedConfiguration => {
     setConfigShown(false);
-    // TODO maybe add success notification
-    // TODO reload project view panel
+    if (updatedConfiguration) {
+      setExtensionConfiguration(updatedConfiguration);
+      config.setForPlugin(EXTENSION_NAME, CONFIG_SEGMENT, updatedConfiguration).then(() => {
+        displayNotification({
+          title: "Saved",
+          content: "Configuration was successfully saved."
+        });
+      }).catch(console.error);
+    }
   }, [setConfigShown, setExtensionConfiguration]);
   return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Grommet, null, isConfigShown ? /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.Layer, {
     onEsc: () => setConfigShown(false),
     onClickOutside: () => setConfigShown(false)
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ConfigForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    configuration: extensionConfiguration,
     onSubmit: handleConfigFormSubmit
   })) : null);
 });

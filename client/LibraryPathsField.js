@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'camunda-modeler-plugin-helpers/react';
-import { Box, Button, List } from 'grommet';
+import { Box, Button, List, Skeleton, Text } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 
 import useDirectoryPicker from "./useDirectoryPicker";
@@ -26,7 +26,7 @@ export default ({ libraryPaths, onLibraryPathsChanged }) => {
   const [ openDirectoryPicker ] = useDirectoryPicker(addLibraryPaths);
 
   return (
-    <>
+    <Box pad="small" elevation="medium">
       <Box direction="row" justify="end">
         <Button onClick={ openDirectoryPicker }>
           <Add />
@@ -35,7 +35,11 @@ export default ({ libraryPaths, onLibraryPathsChanged }) => {
           <Subtract />
         </Button>
       </Box>
-      <List data={ safeLibraryPaths } onClickItem={ (e) => selectPath(e.item) } />
-    </>
+      {
+        safeLibraryPaths.length > 0
+          ? <List data={ safeLibraryPaths } onClickItem={ (e) => selectPath(e.item) } />
+          : <Skeleton>No library paths selected</Skeleton>
+      }
+    </Box>
   )
 }
