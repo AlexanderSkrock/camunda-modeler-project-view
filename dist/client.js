@@ -768,13 +768,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardHeader/CardHeader.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardBody/CardBody.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
-/* harmony import */ var _useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDirectoryPicker */ "./client/useDirectoryPicker.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
+/* harmony import */ var _LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LibraryPathsField */ "./client/LibraryPathsField.js");
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -782,44 +780,29 @@ __webpack_require__.r(__webpack_exports__);
   configuration,
   onSubmit
 }) => {
-  const [initialConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration || {});
-  const [libraryPaths, setLibraryPaths] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialConfig.libraryPaths || []);
-  const addLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(directories => {
-    const newLibraryPaths = new Set(libraryPaths);
-    directories.forEach(dir => newLibraryPaths.add(dir));
-    setLibraryPaths([...newLibraryPaths]);
-  }, [libraryPaths, setLibraryPaths]);
-  const removeLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(directories => {
-    const newLibraryPaths = new Set(libraryPaths);
-    directories.forEach(dir => newLibraryPaths.delete(dir));
-    setLibraryPaths([...newLibraryPaths]);
-  }, [libraryPaths, setLibraryPaths]);
+  const [config, setConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration || {});
+  const handleLibraryPathsChanged = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(libraryPaths => {
+    setConfig({
+      ...config,
+      libraryPaths
+    });
+  }, [config, setConfig]);
   const handleSubmit = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(e => {
     e.preventDefault();
-    const newConfig = {
-      ...initialConfig
-    };
-    newConfig.libraryPaths = libraryPaths;
-    onSubmit(newConfig);
-  }, [libraryPaths, onSubmit]);
-  const [openDirectoryPicker] = (0,_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"])(addLibraryPaths);
+    onSubmit(config);
+  }, [config, onSubmit]);
   return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Card, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.CardHeader, {
     pad: "medium"
   }, "Project View Configuration"), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.Form, {
     onSubmit: handleSubmit
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.CardBody, {
     pad: "medium"
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    directories: libraryPaths,
-    onDirectoriesChanged: setLibraryPaths
-  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
-    data: libraryPaths
-  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
-    label: "Add directory",
-    onClick: openDirectoryPicker
-  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.CardFooter, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_9__.Box, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    libraryPaths: config.libraryPaths,
+    onLibraryPathsChanged: handleLibraryPathsChanged
+  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.CardFooter, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Box, {
     direction: "row"
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.Button, {
     type: "submit",
     primary: true,
     label: "Submit"
@@ -855,6 +838,65 @@ const withCustomEditorActions = actions => {
     };
   };
 };
+
+/***/ }),
+
+/***/ "./client/LibraryPathsField.js":
+/*!*************************************!*\
+  !*** ./client/LibraryPathsField.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
+/* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Add.js");
+/* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Subtract.js");
+/* harmony import */ var _useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDirectoryPicker */ "./client/useDirectoryPicker.js");
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  libraryPaths,
+  onLibraryPathsChanged
+}) => {
+  const safeLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => libraryPaths || [], [libraryPaths]);
+  const [selectedPath, selectPath] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const addLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(directories => {
+    const newLibraryPaths = new Set(safeLibraryPaths);
+    directories.forEach(dir => newLibraryPaths.add(dir));
+    onLibraryPathsChanged([...newLibraryPaths]);
+  }, [safeLibraryPaths, onLibraryPathsChanged]);
+  const removeSelectedLibraryPath = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {
+    if (!selectedPath) {
+      return;
+    }
+    const newLibraryPaths = new Set(safeLibraryPaths);
+    newLibraryPaths.delete(selectedPath);
+    onLibraryPathsChanged([...newLibraryPaths]);
+  }, [selectedPath, safeLibraryPaths, onLibraryPathsChanged]);
+  const [openDirectoryPicker] = (0,_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"])(addLibraryPaths);
+  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement((camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Box, {
+    direction: "row",
+    justify: "end"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: openDirectoryPicker
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_4__.Add, null)), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    disabled: !selectedPath,
+    onClick: removeSelectedLibraryPath
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_5__.Subtract, null))), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
+    data: safeLibraryPaths,
+    onClickItem: e => selectPath(e.item)
+  }));
+});
 
 /***/ }),
 
@@ -1780,6 +1822,348 @@ var extendDefaultTheme = function extendDefaultTheme(theme) {
   defaultProps.theme = (0, _utils.deepMerge)(_themes.base, theme);
 };
 exports.extendDefaultTheme = extendDefaultTheme;
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/StyledIcon.js":
+/*!******************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/StyledIcon.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StyledIcon: () => (/* binding */ StyledIcon)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./default-props */ "./node_modules/grommet-icons/es6/default-props.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./node_modules/grommet-icons/es6/utils.js");
+var _excluded = ["a11yTitle", "color", "size", "theme"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+// Returns the specific color that should be used according to the theme.
+// If 'dark' is supplied, it takes precedence over 'theme.dark'.
+// Can return undefined.
+var normalizeColor = function normalizeColor(color, theme, dark) {
+  var colorSpec = theme.global && theme.global.colors[color] !== undefined ? theme.global.colors[color] : color;
+  // If the color has a light or dark object, use that
+  var result = colorSpec;
+  if (colorSpec) {
+    if ((dark === true || dark === undefined && theme.dark) && colorSpec.dark !== undefined) {
+      result = colorSpec.dark;
+    } else if ((dark === false || !theme.dark) && colorSpec.light !== undefined) {
+      result = colorSpec.light;
+    }
+  }
+  // allow one level of indirection in color names
+  if (result && theme.global && theme.global.colors[result] !== undefined) {
+    result = normalizeColor(result, theme, dark);
+  }
+  return result;
+};
+var colorStyle = function colorStyle(name, value, theme, required) {
+  return (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(["", ":", ";"], name, normalizeColor(value, theme, required));
+};
+var colorCss = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(["", " ", " g{fill:inherit;stroke:inherit;}*:not([stroke]){&[fill='none']{stroke-width:0;}}*[stroke*='#'],*[STROKE*='#']{stroke:inherit;fill:none;}*[fill-rule],*[FILL-RULE],*[fill*='#'],*[FILL*='#']{fill:inherit;stroke:none;}"], function (props) {
+  return colorStyle('fill', props.color || props.theme.global.colors.icon, props.theme);
+}, function (props) {
+  return colorStyle('stroke', props.color || props.theme.global.colors.icon, props.theme);
+});
+var IconInner = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref) {
+  var a11yTitle = _ref.a11yTitle,
+    color = _ref.color,
+    size = _ref.size,
+    theme = _ref.theme,
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", _extends({
+    ref: ref,
+    "aria-label": a11yTitle
+  }, rest));
+});
+IconInner.displayName = 'Icon';
+var StyledIcon = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(IconInner).withConfig({
+  // don't let height attribute leak to DOM
+  // https://styled-components.com/docs/api#shouldforwardprop
+  shouldForwardProp: function shouldForwardProp(prop) {
+    return !['height', 'width'].includes(prop);
+  }
+}).withConfig({
+  displayName: "StyledIcon",
+  componentId: "sc-ofa7kd-0"
+})(["display:inline-block;flex:0 0 auto;", " ", " ", " ", ""], function (_ref2) {
+  var _ref2$size = _ref2.size,
+    size = _ref2$size === void 0 ? 'medium' : _ref2$size,
+    theme = _ref2.theme,
+    viewBox = _ref2.viewBox;
+  var _split = (viewBox || '0 0 24 24').split(' '),
+    w = _split[2],
+    h = _split[3];
+  var scale = w / h;
+  var dimension = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.parseMetricToNum)(theme.icon.size[size] || size);
+  if (w < h) {
+    return "\n      width: " + dimension + "px;\n      height: " + dimension / scale + "px;\n    ";
+  }
+  if (h < w) {
+    return "\n      width: " + dimension * scale + "px;\n      height: " + dimension + "px;\n    ";
+  }
+  return "\n      width: " + dimension + "px;\n      height: " + dimension + "px;\n    ";
+}, function (_ref3) {
+  var color = _ref3.color;
+  return color !== 'plain' && colorCss;
+}, function (props) {
+  return (props.height || props.width) && (0,_utils__WEBPACK_IMPORTED_MODULE_2__.iconPad)(props);
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme && theme.icon.extend;
+});
+StyledIcon.defaultProps = {};
+Object.setPrototypeOf(StyledIcon.defaultProps, _default_props__WEBPACK_IMPORTED_MODULE_3__.defaultProps);
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/default-props.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/default-props.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   defaultProps: () => (/* binding */ defaultProps),
+/* harmony export */   extendDefaultTheme: () => (/* binding */ extendDefaultTheme)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/grommet-icons/es6/utils.js");
+/* harmony import */ var _themes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./themes */ "./node_modules/grommet-icons/es6/themes/base.js");
+
+
+var defaultProps = {
+  theme: _themes__WEBPACK_IMPORTED_MODULE_0__.base
+};
+var extendDefaultTheme = function extendDefaultTheme(theme) {
+  defaultProps.theme = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.deepMerge)(_themes__WEBPACK_IMPORTED_MODULE_0__.base, theme);
+};
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/icons/Add.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/icons/Add.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Add: () => (/* binding */ Add)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _StyledIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../StyledIcon */ "./node_modules/grommet-icons/es6/StyledIcon.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./node_modules/grommet-icons/es6/utils.js");
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+var Add = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var scaleProps = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.useScaleProps)(props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_StyledIcon__WEBPACK_IMPORTED_MODULE_2__.StyledIcon, _extends({
+    ref: ref,
+    viewBox: "0 0 24 24",
+    a11yTitle: "Add"
+  }, props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", _extends({
+    fill: "none",
+    stroke: "#000",
+    strokeWidth: "2",
+    d: "M12 22V2M2 12h20"
+  }, scaleProps)));
+});
+Add.displayName = 'Add';
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/icons/Subtract.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/icons/Subtract.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Subtract: () => (/* binding */ Subtract)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _StyledIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../StyledIcon */ "./node_modules/grommet-icons/es6/StyledIcon.js");
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+var Subtract = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_StyledIcon__WEBPACK_IMPORTED_MODULE_1__.StyledIcon, _extends({
+    ref: ref,
+    viewBox: "0 0 24 24",
+    a11yTitle: "Subtract"
+  }, props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: "none",
+    stroke: "#000",
+    strokeWidth: "2",
+    d: "M2 12h20"
+  }));
+});
+Subtract.displayName = 'Subtract';
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/themes/base.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/themes/base.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   base: () => (/* binding */ base)
+/* harmony export */ });
+var base = {
+  global: {
+    colors: {
+      icon: '#666666'
+    }
+  },
+  icon: {
+    size: {
+      small: '12px',
+      medium: '24px',
+      large: '48px',
+      xlarge: '96px'
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/grommet-icons/es6/utils.js":
+/*!*************************************************!*\
+  !*** ./node_modules/grommet-icons/es6/utils.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deepMerge: () => (/* binding */ deepMerge),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   iconPad: () => (/* binding */ iconPad),
+/* harmony export */   isObject: () => (/* binding */ isObject),
+/* harmony export */   parseMetricToNum: () => (/* binding */ parseMetricToNum),
+/* harmony export */   useScaleProps: () => (/* binding */ useScaleProps)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+function isObject(item) {
+  return item && typeof item === 'object' && !Array.isArray(item);
+}
+function deepMerge(target) {
+  for (var _len = arguments.length, sources = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    sources[_key - 1] = arguments[_key];
+  }
+  if (!sources.length) {
+    return target;
+  }
+  // making sure to not change target (immutable)
+  var output = _extends({}, target);
+  sources.forEach(function (source) {
+    if (isObject(source)) {
+      Object.keys(source).forEach(function (key) {
+        if (isObject(source[key])) {
+          if (!output[key]) {
+            output[key] = _extends({}, source[key]);
+          } else {
+            output[key] = deepMerge(output[key], source[key]);
+          }
+        } else {
+          output[key] = source[key];
+        }
+      });
+    }
+  });
+  return output;
+}
+var parseMetricToNum = function parseMetricToNum(string) {
+  if (string === void 0) {
+    string = '';
+  }
+  return parseFloat(string.match(/\d+(\.\d+)?/), 10);
+};
+
+// scaleProps sets path properties to prevent scaling the stroke
+// when the theme doesn't want it for small sizes.
+function useScaleProps(props) {
+  var _theme$icon;
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext);
+  var size = props.size;
+  var result = {};
+  if (theme != null && (_theme$icon = theme.icon) != null && _theme$icon.disableScaleDown) {
+    var dimension = parseMetricToNum(theme.icon.size[size] || size);
+    if (dimension < 24) result.vectorEffect = 'non-scaling-stroke';
+  }
+  return result;
+}
+var calculatePad = function calculatePad(value, iconDimension) {
+  return (value - iconDimension) / 2 + "px";
+};
+
+// iconPad applies padding to icon to ensure it aligns
+// with text line-height or desired width
+function iconPad(props) {
+  var _theme$icon2, _theme$icon2$size, _theme$text, _theme$text$height, _theme$text2, _theme$text2$width;
+  var height = props.height,
+    _props$size = props.size,
+    size = _props$size === void 0 ? 'medium' : _props$size,
+    width = props.width;
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext);
+  var iconDimension = parseMetricToNum((theme == null ? void 0 : (_theme$icon2 = theme.icon) == null ? void 0 : (_theme$icon2$size = _theme$icon2.size) == null ? void 0 : _theme$icon2$size[size]) || size);
+  var style = '';
+  if (height && theme != null && (_theme$text = theme.text) != null && (_theme$text$height = _theme$text[height]) != null && _theme$text$height.height) {
+    var lineHeight = parseMetricToNum(theme.text[height].height);
+    if (lineHeight > iconDimension) {
+      var pad = calculatePad(lineHeight, iconDimension);
+      style += "padding-top: " + pad + "; padding-bottom: " + pad + ";";
+    }
+  }
+  if (width && theme != null && (_theme$text2 = theme.text) != null && (_theme$text2$width = _theme$text2[width]) != null && _theme$text2$width.height) {
+    var desiredWidth = parseMetricToNum(theme.text[width].height);
+    if (desiredWidth > iconDimension) {
+      var _pad = calculatePad(desiredWidth, iconDimension);
+      style += "padding-left: " + _pad + "; padding-right: " + _pad + ";";
+    }
+  }
+  return style;
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  deepMerge: deepMerge,
+  isObject: isObject,
+  parseMetricToNum: parseMetricToNum,
+  iconPad: iconPad,
+  useScaleProps: useScaleProps
+});
 
 /***/ }),
 
