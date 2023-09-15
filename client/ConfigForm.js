@@ -18,7 +18,7 @@ export default ({ configuration, onSubmit }) => {
   }, [config, onSubmit]);
 
   return (
-    <Card>
+    <Card pad="small" width="large">
       <CardHeader justify="center">
         <Heading level="3">Project View Configuration</Heading>
       </CardHeader>
