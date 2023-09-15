@@ -764,15 +764,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
 /* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
-/* harmony import */ var use_file_picker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! use-file-picker */ "./node_modules/use-file-picker/dist/index.esm.js");
-/* harmony import */ var normalize_path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! normalize-path */ "./node_modules/normalize-path/index.js");
-/* harmony import */ var normalize_path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(normalize_path__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Card/Card.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardHeader/CardHeader.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardBody/CardBody.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
+/* harmony import */ var _useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDirectoryPicker */ "./client/useDirectoryPicker.js");
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -783,16 +784,15 @@ __webpack_require__.r(__webpack_exports__);
 }) => {
   const [initialConfig] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(configuration || {});
   const [libraryPaths, setLibraryPaths] = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialConfig.libraryPaths || []);
-  const addLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(files => {
-    const uniqueLibraryPaths = new Set(libraryPaths);
-    files.map(file => {
-      const normalizedPath = normalize_path__WEBPACK_IMPORTED_MODULE_2___default()(file.path);
-      const normalizedRelPath = normalize_path__WEBPACK_IMPORTED_MODULE_2___default()(file.webkitRelativePath);
-      const rootPath = normalizedPath.substring(0, normalizedPath.indexOf(normalizedRelPath));
-      const directoryName = normalizedRelPath.substring(0, normalizedRelPath.indexOf("/"));
-      return rootPath + directoryName;
-    }).forEach(dir => uniqueLibraryPaths.add(dir));
-    setLibraryPaths([...uniqueLibraryPaths]);
+  const addLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(directories => {
+    const newLibraryPaths = new Set(libraryPaths);
+    directories.forEach(dir => newLibraryPaths.add(dir));
+    setLibraryPaths([...newLibraryPaths]);
+  }, [libraryPaths, setLibraryPaths]);
+  const removeLibraryPaths = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(directories => {
+    const newLibraryPaths = new Set(libraryPaths);
+    directories.forEach(dir => newLibraryPaths.delete(dir));
+    setLibraryPaths([...newLibraryPaths]);
   }, [libraryPaths, setLibraryPaths]);
   const handleSubmit = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(e => {
     e.preventDefault();
@@ -802,35 +802,28 @@ __webpack_require__.r(__webpack_exports__);
     newConfig.libraryPaths = libraryPaths;
     onSubmit(newConfig);
   }, [libraryPaths, onSubmit]);
-  const {
-    openFilePicker
-  } = (0,use_file_picker__WEBPACK_IMPORTED_MODULE_1__.useFilePicker)({
-    initializeWithCustomParameters: input => {
-      // Enable to ability to select directories
-      input.setAttribute("directory", "true");
-      input.setAttribute("webkitdirectory", "true");
-    },
-    readFilesContent: false,
-    onFilesSelected: result => addLibraryPaths(result.plainFiles)
-  });
-  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement((camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Project View Configuration", /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.Form, {
-    id: "projectViewConfigForm",
+  const [openDirectoryPicker] = (0,_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"])(addLibraryPaths);
+  return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Card, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.CardHeader, {
+    pad: "medium"
+  }, "Project View Configuration"), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.Form, {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.List, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.CardBody, {
+    pad: "medium"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    directories: libraryPaths,
+    onDirectoriesChanged: setLibraryPaths
+  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
     data: libraryPaths
-  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.Button, {
-    onClick: openFilePicker
-  }, "Add library path"), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.Box, {
-    direction: "row",
-    gap: "medium"
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.Button, {
+  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
+    label: "Add directory",
+    onClick: openDirectoryPicker
+  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.CardFooter, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_9__.Box, {
+    direction: "row"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
     type: "submit",
     primary: true,
     label: "Submit"
-  }), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.Button, {
-    type: "reset",
-    label: "Reset"
-  }))));
+  })))));
 });
 
 /***/ }),
@@ -937,6 +930,57 @@ const DEFAULT_CONFIGURATION = {
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ConfigForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onSubmit: handleConfigFormSubmit
   })) : null);
+});
+
+/***/ }),
+
+/***/ "./client/useDirectoryPicker.js":
+/*!**************************************!*\
+  !*** ./client/useDirectoryPicker.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers/react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var use_file_picker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! use-file-picker */ "./node_modules/use-file-picker/dist/index.esm.js");
+/* harmony import */ var normalize_path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! normalize-path */ "./node_modules/normalize-path/index.js");
+/* harmony import */ var normalize_path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(normalize_path__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (onDirectoriesSelected => {
+  const onFilesSelected = (0,camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(({
+    plainFiles
+  }) => {
+    const directories = new Set();
+    plainFiles.map(file => {
+      const normalizedPath = normalize_path__WEBPACK_IMPORTED_MODULE_2___default()(file.path);
+      const normalizedRelPath = normalize_path__WEBPACK_IMPORTED_MODULE_2___default()(file.webkitRelativePath);
+      const rootPath = normalizedPath.substring(0, normalizedPath.indexOf(normalizedRelPath));
+      const directoryName = normalizedRelPath.substring(0, normalizedRelPath.indexOf("/"));
+      return rootPath + directoryName;
+    }).forEach(dir => directories.add(dir));
+    if (onDirectoriesSelected) {
+      onDirectoriesSelected(directories);
+    }
+  });
+  const {
+    openFilePicker: openDirectoryPicker
+  } = (0,use_file_picker__WEBPACK_IMPORTED_MODULE_1__.useFilePicker)({
+    initializeWithCustomParameters: input => {
+      // Enable to ability to select directories
+      input.setAttribute("directory", "true");
+      input.setAttribute("webkitdirectory", "true");
+    },
+    readFilesContent: false,
+    onFilesSelected: onFilesSelected
+  });
+  return [openDirectoryPicker];
 });
 
 /***/ }),
@@ -4398,6 +4442,142 @@ var ButtonPropTypes = PropType;
 
 /***/ }),
 
+/***/ "./node_modules/grommet/es6/components/CardBody/CardBody.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/CardBody/CardBody.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CardBody: () => (/* binding */ CardBody)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../default-props */ "./node_modules/grommet/es6/default-props.js");
+/* harmony import */ var _Box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Box */ "./node_modules/grommet/es6/components/Box/Box.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+var CardBody = function CardBody(_ref) {
+  var rest = _extends({}, (_objectDestructuringEmpty(_ref), _ref));
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext) || _default_props__WEBPACK_IMPORTED_MODULE_2__.defaultProps.theme;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Box__WEBPACK_IMPORTED_MODULE_3__.Box, _extends({
+    flex: true
+  }, theme.card.body, rest));
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/CardFooter/CardFooter.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CardFooter: () => (/* binding */ CardFooter)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../default-props */ "./node_modules/grommet/es6/default-props.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Footer */ "./node_modules/grommet/es6/components/Footer/Footer.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+// Needs to have a CardBody or a flex container when Card uses a fixed height.
+var CardFooter = function CardFooter(_ref) {
+  var rest = _extends({}, (_objectDestructuringEmpty(_ref), _ref));
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext) || _default_props__WEBPACK_IMPORTED_MODULE_2__.defaultProps.theme;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.Footer, _extends({}, theme.card.footer, rest));
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/CardHeader/CardHeader.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/CardHeader/CardHeader.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CardHeader: () => (/* binding */ CardHeader)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../default-props */ "./node_modules/grommet/es6/default-props.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Header */ "./node_modules/grommet/es6/components/Header/Header.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+var CardHeader = function CardHeader(_ref) {
+  var rest = _extends({}, (_objectDestructuringEmpty(_ref), _ref));
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext) || _default_props__WEBPACK_IMPORTED_MODULE_2__.defaultProps.theme;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Header__WEBPACK_IMPORTED_MODULE_3__.Header, _extends({}, theme.card.header, rest));
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Card/Card.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Card/Card.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Card: () => (/* binding */ Card)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../default-props */ "./node_modules/grommet/es6/default-props.js");
+/* harmony import */ var _Box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Box */ "./node_modules/grommet/es6/components/Box/Box.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+var Card = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref) {
+  var _theme$card$hover;
+  var rest = _extends({}, (_objectDestructuringEmpty(_ref), _ref));
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext) || _default_props__WEBPACK_IMPORTED_MODULE_2__.defaultProps.theme;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Box__WEBPACK_IMPORTED_MODULE_3__.Box, _extends({
+    overflow: "hidden",
+    kind: _extends({
+      hover: (_theme$card$hover = theme.card.hover) == null ? void 0 : _theme$card$hover.container
+    }, theme.card.container),
+    ref: ref
+  }, theme.card.container, rest));
+});
+Card.displayName = 'Card';
+
+
+/***/ }),
+
 /***/ "./node_modules/grommet/es6/components/Drop/Drop.js":
 /*!**********************************************************!*\
   !*** ./node_modules/grommet/es6/components/Drop/Drop.js ***!
@@ -4983,6 +5163,39 @@ var FocusedContainer = function FocusedContainer(_ref) {
     "aria-hidden": hidden
   }, rest), children));
 };
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Footer/Footer.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Footer/Footer.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Footer: () => (/* binding */ Footer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Box__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Box */ "./node_modules/grommet/es6/components/Box/Box.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+var Footer = function Footer(_ref) {
+  var rest = _extends({}, (_objectDestructuringEmpty(_ref), _ref));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Box__WEBPACK_IMPORTED_MODULE_1__.Box, _extends({
+    as: "footer",
+    align: "center",
+    direction: "row",
+    flex: false,
+    gap: "medium",
+    justify: "between"
+  }, rest));
+};
+
 
 /***/ }),
 
@@ -6054,6 +6267,85 @@ if (true) {
   };
 }
 var GrommetPropTypes = PropType;
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Header/Header.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Header/Header.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Header: () => (/* binding */ Header)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/refs.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/DOM.js");
+/* harmony import */ var _Box__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Box */ "./node_modules/grommet/es6/components/Box/Box.js");
+var _excluded = ["sticky"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+var Header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef(function (_ref, ref) {
+  var _theme$header2;
+  var sticky = _ref.sticky,
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded);
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext);
+  var headerRef = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.useForwardedRef)(ref);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var scrollTop = 0;
+    var updateScrollDir = function updateScrollDir() {
+      // target is its scroll parent
+      var target = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.findScrollParent)(headerRef.current);
+      var header = headerRef.current;
+      if (target && sticky === 'scrollup') {
+        var nextScrollTop = target === document ? window.pageYOffset : target.scrollTop;
+        if (scrollTop - nextScrollTop <= 0) {
+          header.style.top = "-" + header.getBoundingClientRect().height + "px";
+          header.style.zIndex = '';
+        } else if (scrollTop - nextScrollTop > 0) {
+          var _theme$header;
+          // ensure that header moves with the target
+          header.style.position = 'sticky';
+          header.style.top = '0px';
+          header.style.zIndex = "" + ((_theme$header = theme.header) == null || (_theme$header = _theme$header.sticky) == null ? void 0 : _theme$header.zIndex);
+          header.style.transition = 'top 0.6s';
+        }
+        scrollTop = nextScrollTop;
+      }
+    };
+    if (sticky === 'scrollup') {
+      updateScrollDir();
+      window.addEventListener('resize', updateScrollDir);
+      window.addEventListener('scroll', updateScrollDir, true);
+    }
+    return function () {
+      if (sticky === 'scrollup') {
+        window.removeEventListener('resize', updateScrollDir);
+        window.removeEventListener('scroll', updateScrollDir, true);
+      }
+    };
+  }, [headerRef, sticky, (_theme$header2 = theme.header) == null || (_theme$header2 = _theme$header2.sticky) == null ? void 0 : _theme$header2.zIndex]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Box__WEBPACK_IMPORTED_MODULE_4__.Box, _extends({
+    align: "center",
+    as: "header",
+    direction: "row",
+    flex: false,
+    justify: "between",
+    gap: "medium",
+    ref: headerRef
+  }, rest));
+});
+Header.displayName = 'Header';
+
 
 /***/ }),
 
