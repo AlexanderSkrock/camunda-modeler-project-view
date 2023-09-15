@@ -37,7 +37,7 @@ export default ({ libraryPaths, onLibraryPathsChanged }) => {
       </Box>
       {
         safeLibraryPaths.length > 0
-          ? <List data={ safeLibraryPaths } onClickItem={ (e) => selectPath(e.item) } />
+          ? <List data={ safeLibraryPaths } onClickItem={ (e) => selectPath(e.item) } children={ (item) => <Text size="small">{ item }</Text> } />
           : <Skeleton>No library paths selected</Skeleton>
       }
     </Box>

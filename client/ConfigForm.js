@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useState } from 'camunda-modeler-plugin-helpers/react';
 
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Form, Header } from 'grommet'
+import { Button, Card, CardBody, CardFooter, CardHeader, Form, Heading } from 'grommet'
 
 import LibraryPathsField from "./LibraryPathsField";
 
@@ -19,8 +19,8 @@ export default ({ configuration, onSubmit }) => {
 
   return (
     <Card>
-      <CardHeader pad="medium">
-        Project View Configuration
+      <CardHeader justify="center">
+        <Heading level="3">Project View Configuration</Heading>
       </CardHeader>
       <Form onSubmit={ handleSubmit }>
         <CardBody pad="medium">

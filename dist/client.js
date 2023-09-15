@@ -766,10 +766,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Card/Card.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardHeader/CardHeader.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardBody/CardBody.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Heading/Heading.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Form/Form.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardBody/CardBody.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/CardFooter/CardFooter.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
 /* harmony import */ var _LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LibraryPathsField */ "./client/LibraryPathsField.js");
 /* eslint-disable no-unused-vars */
 
@@ -791,18 +792,20 @@ __webpack_require__.r(__webpack_exports__);
     onSubmit(config);
   }, [config, onSubmit]);
   return /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_2__.Card, null, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_3__.CardHeader, {
-    pad: "medium"
-  }, "Project View Configuration"), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.Form, {
+    justify: "center"
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_4__.Heading, {
+    level: "3"
+  }, "Project View Configuration")), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.Form, {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_5__.CardBody, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.CardBody, {
     pad: "medium"
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_LibraryPathsField__WEBPACK_IMPORTED_MODULE_1__["default"], {
     libraryPaths: config.libraryPaths,
     onLibraryPathsChanged: handleLibraryPathsChanged
-  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.CardFooter, {
+  })), /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.CardFooter, {
     pad: "small",
     justify: "center"
-  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Button, {
+  }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.Button, {
     type: "submit",
     primary: true,
     label: "Submit"
@@ -857,7 +860,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Box/Box.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Button/Button.js");
 /* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/List/List.js");
-/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Skeleton/Skeleton.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Text/Text.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/components/Skeleton/Skeleton.js");
 /* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Add.js");
 /* harmony import */ var grommet_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! grommet-icons */ "./node_modules/grommet-icons/es6/icons/Subtract.js");
 /* harmony import */ var _useDirectoryPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDirectoryPicker */ "./client/useDirectoryPicker.js");
@@ -898,8 +902,11 @@ __webpack_require__.r(__webpack_exports__);
     onClick: removeSelectedLibraryPath
   }, /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet_icons__WEBPACK_IMPORTED_MODULE_5__.Subtract, null))), safeLibraryPaths.length > 0 ? /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_6__.List, {
     data: safeLibraryPaths,
-    onClickItem: e => selectPath(e.item)
-  }) : /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Skeleton, null, "No library paths selected"));
+    onClickItem: e => selectPath(e.item),
+    children: item => /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_7__.Text, {
+      size: "small"
+    }, item)
+  }) : /*#__PURE__*/camunda_modeler_plugin_helpers_react__WEBPACK_IMPORTED_MODULE_0___default().createElement(grommet__WEBPACK_IMPORTED_MODULE_8__.Skeleton, null, "No library paths selected"));
 });
 
 /***/ }),
@@ -6742,6 +6749,248 @@ var Header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRe
 });
 Header.displayName = 'Header';
 
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Heading/Heading.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Heading/Heading.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Heading: () => (/* binding */ Heading)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_use_isomorphic_layout_effect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/use-isomorphic-layout-effect */ "./node_modules/grommet/es6/utils/use-isomorphic-layout-effect.js");
+/* harmony import */ var _StyledHeading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./StyledHeading */ "./node_modules/grommet/es6/components/Heading/StyledHeading.js");
+/* harmony import */ var _propTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./propTypes */ "./node_modules/grommet/es6/components/Heading/propTypes.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/refs.js");
+/* harmony import */ var _Skeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Skeleton */ "./node_modules/grommet/es6/components/Skeleton/SkeletonContext.js");
+/* harmony import */ var _HeadingSkeleton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HeadingSkeleton */ "./node_modules/grommet/es6/components/Heading/HeadingSkeleton.js");
+var _excluded = ["children", "color", "fill", "level", "overflowWrap", "weight"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+
+var Heading = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref // munged to avoid styled-components putting it in the DOM
+) {
+  var children = _ref.children,
+    color = _ref.color,
+    fill = _ref.fill,
+    level = _ref.level,
+    overflowWrapProp = _ref.overflowWrap,
+    weight = _ref.weight,
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded);
+  var headingRef = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.useForwardedRef)(ref);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(overflowWrapProp || 'break-word'),
+    overflowWrap = _useState[0],
+    setOverflowWrap = _useState[1];
+  var skeleton = (0,_Skeleton__WEBPACK_IMPORTED_MODULE_2__.useSkeleton)();
+
+  // handle overflowWrap of heading
+  (0,_utils_use_isomorphic_layout_effect__WEBPACK_IMPORTED_MODULE_3__.useLayoutEffect)(function () {
+    var updateOverflowWrap = function updateOverflowWrap() {
+      var wrap;
+      if (!overflowWrapProp && headingRef.current) {
+        wrap = headingRef.current.scrollWidth > headingRef.current.offsetWidth ? 'anywhere' : 'break-word';
+        setOverflowWrap(wrap);
+      }
+    };
+    window.addEventListener('resize', updateOverflowWrap);
+    updateOverflowWrap();
+    return function () {
+      return window.removeEventListener('resize', updateOverflowWrap);
+    };
+  }, [headingRef, overflowWrapProp]);
+  var content = children;
+  if (skeleton) {
+    content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HeadingSkeleton__WEBPACK_IMPORTED_MODULE_4__.HeadingSkeleton, _extends({
+      level: level,
+      fill: fill
+    }, rest));
+  }
+  return (
+    /*#__PURE__*/
+    // enforce level to be a number
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_StyledHeading__WEBPACK_IMPORTED_MODULE_5__.StyledHeading, _extends({
+      as: "h" + level,
+      colorProp: color,
+      fillProp: fill,
+      level: +level,
+      overflowWrap: overflowWrap,
+      weight: weight
+    }, rest, {
+      ref: headingRef
+    }), content)
+  );
+});
+Heading.displayName = 'Heading';
+Heading.defaultProps = {
+  level: 1,
+  responsive: true
+};
+Heading.propTypes = _propTypes__WEBPACK_IMPORTED_MODULE_6__.HeadingPropTypes;
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Heading/HeadingSkeleton.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Heading/HeadingSkeleton.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HeadingSkeleton: () => (/* binding */ HeadingSkeleton)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/camunda-modeler-plugin-helpers/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _Skeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Skeleton */ "./node_modules/grommet/es6/components/Skeleton/Skeleton.js");
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+var HeadingSkeleton = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref) {
+  var as = _ref.as,
+    level = _ref.level,
+    size = _ref.size;
+  var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(styled_components__WEBPACK_IMPORTED_MODULE_1__.ThemeContext) || defaultProps.theme;
+  var levelStyle = theme.heading.level[level];
+  var data = levelStyle == null ? void 0 : levelStyle[size || 'medium'];
+  var height = data ? data.height : size;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Skeleton__WEBPACK_IMPORTED_MODULE_2__.Skeleton, _extends({
+    as: as,
+    ref: ref,
+    height: height
+  }, theme.heading.skeleton));
+});
+HeadingSkeleton.displayName = 'HeadingSkeleton';
+HeadingSkeleton.defaultProps = {
+  level: 1
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Heading/StyledHeading.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Heading/StyledHeading.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StyledHeading: () => (/* binding */ StyledHeading)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/mixins.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/colors.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils */ "./node_modules/grommet/es6/utils/styles.js");
+/* harmony import */ var _default_props__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../default-props */ "./node_modules/grommet/es6/default-props.js");
+
+
+
+var sizeStyle = function sizeStyle(props) {
+  // size is a combination of the level and size properties
+  var size = props.size || 'medium';
+  var headingTheme = props.theme.heading;
+  var levelStyle = headingTheme.level[props.level];
+  if (levelStyle) {
+    var data = levelStyle[size];
+    var styles = [(0,styled_components__WEBPACK_IMPORTED_MODULE_0__.css)(["font-size:", ";line-height:", ";max-width:", ";font-weight:", ";overflow-wrap:", ";"], data ? data.size : size, data ? data.height : 'normal', props.fillProp && 'none' || data && data.maxWidth || levelStyle.medium.maxWidth, props.weight || levelStyle.font.weight || headingTheme.weight, props.overflowWrap)];
+    if (props.responsive && headingTheme.responsiveBreakpoint) {
+      var breakpoint = props.theme.global.breakpoints[headingTheme.responsiveBreakpoint];
+      if (breakpoint) {
+        var responsiveData = headingTheme.level[props.level + 1] ? headingTheme.level[props.level + 1][size] : headingTheme.level[props.level][size];
+        if (responsiveData) {
+          styles.push((0,_utils__WEBPACK_IMPORTED_MODULE_1__.breakpointStyle)(breakpoint, "\n            font-size: " + responsiveData.size + ";\n            line-height: " + responsiveData.height + ";\n            max-width: " + (props.fillProp && 'none' || responsiveData.maxWidth) + ";\n          "));
+        }
+      }
+    }
+    return styles;
+  }
+  console.warn("Heading level " + props.level + " is not defined in your theme.");
+  return '';
+};
+var fontFamily = function fontFamily(props) {
+  var _ref = props.theme.heading.level[props.level] || {},
+    font = _ref.font;
+  if (font && font.family) {
+    return (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.css)(["font-family:", ";"], font.family);
+  }
+  return props.theme.heading.font ? (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.css)(["font-family:", ";"], props.theme.heading.font.family) : '';
+};
+var truncateStyle = "\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n";
+var colorStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.css)(["color:", ";"], function (props) {
+  return (0,_utils__WEBPACK_IMPORTED_MODULE_2__.normalizeColor)(props.colorProp || props.theme.heading.color, props.theme);
+});
+var StyledHeading = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].h1.withConfig({
+  displayName: "StyledHeading",
+  componentId: "sc-1rdh4aw-0"
+})(["", " ", " ", " ", " ", " ", " ", ""], _utils__WEBPACK_IMPORTED_MODULE_3__.genericStyles, function (props) {
+  return fontFamily(props);
+}, function (props) {
+  return sizeStyle(props);
+}, function (props) {
+  return props.textAlign && _utils__WEBPACK_IMPORTED_MODULE_3__.textAlignStyle;
+}, function (props) {
+  return props.truncate && truncateStyle;
+}, function (props) {
+  return (props.colorProp || props.theme.heading.color) && colorStyle;
+}, function (props) {
+  return props.theme.heading && props.theme.heading.extend;
+});
+StyledHeading.defaultProps = {};
+Object.setPrototypeOf(StyledHeading.defaultProps, _default_props__WEBPACK_IMPORTED_MODULE_4__.defaultProps);
+
+
+/***/ }),
+
+/***/ "./node_modules/grommet/es6/components/Heading/propTypes.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/grommet/es6/components/Heading/propTypes.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HeadingPropTypes: () => (/* binding */ HeadingPropTypes)
+/* harmony export */ });
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_general_prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/general-prop-types */ "./node_modules/grommet/es6/utils/general-prop-types.js");
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+var PropType = {};
+if (true) {
+  PropType = _extends({}, _utils_general_prop_types__WEBPACK_IMPORTED_MODULE_0__.genericProps, {
+    color: _utils_general_prop_types__WEBPACK_IMPORTED_MODULE_0__.colorPropType,
+    fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().bool),
+    level: prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+    overflowWrap: prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOf(['normal', 'break-word', 'anywhere']), (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)]),
+    responsive: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().bool),
+    size: prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOf(['small', 'medium', 'large', 'xlarge']), (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)]),
+    textAlign: prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOf(['start', 'center', 'end', 'justify']),
+    truncate: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().bool),
+    weight: prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOf(['normal', 'bold', 'lighter', 'bolder']), (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)])
+  });
+}
+var HeadingPropTypes = PropType;
 
 /***/ }),
 
